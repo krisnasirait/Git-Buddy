@@ -16,11 +16,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.UserViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Search) {
             binding.tvName.text = item.login
-
-            val regex = "[^/]+$".toRegex()
-            val matchResult = regex.find(item.url)
-
-            binding.tvUsername.text = matchResult!!.value
+            binding.tvId.text = item.id.toString()
             Glide.with(binding.root)
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)

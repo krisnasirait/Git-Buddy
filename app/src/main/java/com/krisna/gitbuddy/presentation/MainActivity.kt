@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -35,6 +36,12 @@ class MainActivity : AppCompatActivity() {
 
         githubViewModel = ViewModelProvider(this)[GithubViewModel::class.java]
 
+        githubViewModel.isLoading.observe(this) { isLoading ->
+            binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+
+
         githubViewModel.users.observe(this) { users ->
             if (users != null) {
                 adapterUser.setDataUser(users)
@@ -62,8 +69,10 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            // Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
             override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isNotEmpty()) {
+                    githubViewModel.searchUser(newText)
+                }
                 return false
             }
         })
