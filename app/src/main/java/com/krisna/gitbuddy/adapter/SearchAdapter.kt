@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.krisna.gitbuddy.data.model.User
+import com.krisna.gitbuddy.data.model.Search
 import com.krisna.gitbuddy.databinding.ItemUserRvBinding
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class SearchAdapter : RecyclerView.Adapter<SearchAdapter.UserViewHolder>() {
 
-    private val itemUser = mutableListOf<User?>()
+    private val itemUserResponse = mutableListOf<Search?>()
 
     inner class UserViewHolder(private val binding: ItemUserRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: User) {
+        fun bind(item: Search) {
+            binding.tvName.text = item.login
+            binding.tvId.text = item.id.toString()
             Glide.with(binding.root)
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
@@ -30,17 +32,17 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return itemUser.size
+        return itemUserResponse.size
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        itemUser[position]?.let { holder.bind(it) }
+        itemUserResponse[position]?.let { holder.bind(it) }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setDataUser(user: List<User?>) {
-        itemUser.clear()
-        itemUser.addAll(user)
+    fun setDataUser(search: List<Search?>) {
+        itemUserResponse.clear()
+        itemUserResponse.addAll(search)
         notifyDataSetChanged()
     }
 
