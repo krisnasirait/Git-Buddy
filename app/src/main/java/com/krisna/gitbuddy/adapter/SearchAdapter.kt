@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.krisna.gitbuddy.data.model.response.UserResponse
+import com.krisna.gitbuddy.data.model.Search
 import com.krisna.gitbuddy.databinding.ItemUserRvBinding
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class SearchAdapter : RecyclerView.Adapter<SearchAdapter.UserViewHolder>() {
 
-    private val itemUserResponse = mutableListOf<UserResponse?>()
+    private val itemUserResponse = mutableListOf<Search?>()
 
     inner class UserViewHolder(private val binding: ItemUserRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: UserResponse) {
+        fun bind(item: Search) {
+            binding.tvName.text = item.login
+
+            val regex = "[^/]+$".toRegex()
+            val matchResult = regex.find(item.url)
+
+            binding.tvUsername.text = matchResult!!.value
             Glide.with(binding.root)
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
@@ -38,9 +44,9 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setDataUser(userResponse: List<UserResponse?>) {
+    fun setDataUser(search: List<Search?>) {
         itemUserResponse.clear()
-        itemUserResponse.addAll(userResponse)
+        itemUserResponse.addAll(search)
         notifyDataSetChanged()
     }
 
