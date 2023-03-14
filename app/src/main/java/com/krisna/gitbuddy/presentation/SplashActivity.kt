@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy
+package com.krisna.gitbuddy.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

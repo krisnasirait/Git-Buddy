@@ -1,10 +1,10 @@
 package com.krisna.gitbuddy.data
 
-import com.krisna.gitbuddy.data.model.User
+import com.krisna.gitbuddy.data.model.response.UserResponse
 
 object DataUser {
-    val itemUser : ArrayList<User> = arrayListOf(
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+    val itemUserResponses : ArrayList<UserResponse> = arrayListOf(
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -24,7 +24,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -44,7 +44,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -64,7 +64,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -84,7 +84,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -104,7 +104,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -124,7 +124,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -144,7 +144,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -164,7 +164,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -184,7 +184,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -204,7 +204,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",
@@ -224,7 +224,7 @@ object DataUser {
             "User",
             "https://api.github.com/users/krisnasirait"
         ),
-        User("https://avatars.githubusercontent.com/u/87990002?v=4",
+        UserResponse("https://avatars.githubusercontent.com/u/87990002?v=4",
             "https://api.github.com/users/krisnasirait/events{/privacy}",
             "https://api.github.com/users/krisnasirait/followers",
             "https://api.github.com/users/krisnasirait/following{/other_user}",

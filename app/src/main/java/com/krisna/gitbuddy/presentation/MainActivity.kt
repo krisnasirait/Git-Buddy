@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy
+package com.krisna.gitbuddy.presentation
 
 import android.app.SearchManager
 import android.content.Context
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.krisna.gitbuddy.R
 import com.krisna.gitbuddy.adapter.UserAdapter
 import com.krisna.gitbuddy.data.DataUser
 import com.krisna.gitbuddy.databinding.ActivityMainBinding
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapterUser = UserAdapter()
-        adapterUser.setDataUser(DataUser.itemUser)
+        adapterUser.setDataUser(DataUser.itemUserResponses)
         binding.rvUser.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
