@@ -35,8 +35,4 @@ interface ApiService {
         @Header("Authorization") token: String
     ): List<FollowResponse>
 
-
-
-
-
 }
