@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Git Buddy</string>
     <string name="search_hint">Cari disini</string>
+    <string name="default_name">Krisna</string>
+    <string name="default_username">krisnasirait</string>
+    <string name="default_bio">Mobile Development Enthusiast</string>
 </resources>
