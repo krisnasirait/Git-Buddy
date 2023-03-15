@@ -1,9 +1,9 @@
 package com.krisna.gitbuddy.data.remote
 
-import com.krisna.gitbuddy.data.model.response.FollowResponse
-import com.krisna.gitbuddy.data.model.response.ProfileResponse
 import com.krisna.gitbuddy.data.model.response.search.SearchResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
+import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
+import com.krisna.gitbuddy.data.model.response.followers.FollowersResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -29,20 +29,20 @@ interface ApiService {
     suspend fun getUser(
         @Path("username") username: String,
         @Header("Authorization") token: String
-    ): ProfileResponse
+    ): DetailUserResponse
 
     //get user followers
     @GET("users/{username}/followers")
     suspend fun getUserFollowers(
         @Path("username") username: String,
         @Header("Authorization") token: String
-    ): FollowResponse
+    ): FollowersResponse
 
     //get user following
     @GET("users/{username}/following")
     suspend fun getUserFollowing(
         @Path("username") username: String,
         @Header("Authorization") token: String
-    ): FollowResponse
+    ): FollowersResponse
 
 }

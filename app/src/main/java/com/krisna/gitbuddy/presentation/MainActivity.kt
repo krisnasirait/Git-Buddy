@@ -2,11 +2,11 @@ package com.krisna.gitbuddy.presentation
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +26,9 @@ class MainActivity :
     private lateinit var adapterUser: UserAdapter
     private lateinit var adapterSearch: SearchAdapter
     private lateinit var githubViewModel: GithubViewModel
+
+
+    private lateinit var username :  String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,8 +95,19 @@ class MainActivity :
         return true
     }
 
-    override fun onItemClick(article: Parcelable) {
-
+    override fun onItemUserListClicked(allUserResponseItem: Parcelable) {
+        val intent = Intent(this, DetailActivity::class.java).apply {
+            putExtra("clickedUser", allUserResponseItem)
+        }
+        startActivity(intent)
     }
+
+    override fun onSearchItemClicked(searchResponseItem: Parcelable) {
+        val intent = Intent(this, DetailActivity::class.java).apply {
+            putExtra("clickedSearch", searchResponseItem)
+        }
+        startActivity(intent)
+    }
+
 
 }

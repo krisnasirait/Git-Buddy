@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponseItem
@@ -24,7 +23,7 @@ class UserAdapter(
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
             binding.root.setOnClickListener {
-                itemClickListener.onItemClick(item)
+                itemClickListener.onItemUserListClicked(item)
             }
         }
     }
@@ -44,7 +43,7 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        itemList[position]?.let { holder.bind(it) }
+        itemList[position].let { holder.bind(it) }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -55,7 +54,7 @@ class UserAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(article: Parcelable)
+        fun onItemUserListClicked(allUserResponseItem: Parcelable)
     }
 
 

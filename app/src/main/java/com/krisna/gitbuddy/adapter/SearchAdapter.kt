@@ -24,7 +24,7 @@ class SearchAdapter(
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
             binding.root.setOnClickListener{
-                itemClickListener.onItemClick(item)
+                itemClickListener.onSearchItemClicked(item)
             }
         }
     }
@@ -54,7 +54,7 @@ class SearchAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(article: Parcelable)
+        fun onSearchItemClicked(searchResponseItem: Parcelable)
     }
 
 
