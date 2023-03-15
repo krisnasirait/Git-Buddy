@@ -29,6 +29,12 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, Searc
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupRecyclerView()
+
+        setupViewModelObservers()
+    }
+
+    private fun setupRecyclerView() {
         adapterUser = UserAdapter(this)
         adapterSearch = SearchAdapter(this)
         binding.rvUser.apply {
@@ -36,36 +42,25 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, Searc
             setHasFixedSize(true)
             adapter = adapterUser
         }
+    }
 
+    private fun setupViewModelObservers() {
         githubViewModel = ViewModelProvider(this)[GithubViewModel::class.java]
 
         githubViewModel.isLoading.observe(this) { isLoading ->
             binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        githubViewModel.getAllUsers()
-
         githubViewModel.allUser.observe(this) { allUser ->
-            if (allUser != null) {
-                adapterUser.setData(allUser)
-                adapterUser.notifyDataSetChanged()
-            }
+            adapterUser.setData(allUser ?: emptyList())
         }
-
-
 
         githubViewModel.users.observe(this) { users ->
-            if (users != null) {
-                adapterSearch.setSearch(users)
-                adapterSearch.notifyDataSetChanged()
-            }
-            binding.rvUser.apply {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = adapterSearch
-            }
+            adapterSearch.setSearch(users ?: emptyList())
+            binding.rvUser.adapter = adapterSearch
         }
 
+        githubViewModel.getAllUsers()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -98,7 +93,7 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, Searc
     }
 
     override fun onItemClick(article: Parcelable) {
-        TODO("Not yet implemented")
+        // Handle item click
     }
 
 }
