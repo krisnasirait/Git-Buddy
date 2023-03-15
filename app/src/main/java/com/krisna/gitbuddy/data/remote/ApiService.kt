@@ -2,9 +2,8 @@ package com.krisna.gitbuddy.data.remote
 
 import com.krisna.gitbuddy.data.model.response.FollowResponse
 import com.krisna.gitbuddy.data.model.response.ProfileResponse
-import com.krisna.gitbuddy.data.model.response.SearchResponse
+import com.krisna.gitbuddy.data.model.response.search.SearchResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
-import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path

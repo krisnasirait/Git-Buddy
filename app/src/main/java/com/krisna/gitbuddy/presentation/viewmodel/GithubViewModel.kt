@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.krisna.gitbuddy.data.model.Search
+import com.krisna.gitbuddy.data.model.response.search.SearchResponseItem
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
-import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponseItem
 import com.krisna.gitbuddy.repository.GithubRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,8 +16,8 @@ class GithubViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
 
-    private val _users = MutableLiveData<List<Search?>?>()
-    val users: LiveData<List<Search?>?> = _users
+    private val _users = MutableLiveData<List<SearchResponseItem?>?>()
+    val users: LiveData<List<SearchResponseItem?>?> = _users
 
     private val _allUser = MutableLiveData<AllUserResponse?>()
     val allUser: LiveData<AllUserResponse?> = _allUser
@@ -57,7 +56,7 @@ class GithubViewModel: ViewModel() {
                }
            }.onSuccess { data ->
                withContext(Dispatchers.Main) {
-                   _users.value = data.searches
+                   _users.value = data.searchResponseItems
                    _isLoading.value = false
                }
            }.onFailure { error ->

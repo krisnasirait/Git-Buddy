@@ -1,7 +1,7 @@
 package com.krisna.gitbuddy.repository
 
 import com.krisna.gitbuddy.data.Utility
-import com.krisna.gitbuddy.data.model.response.SearchResponse
+import com.krisna.gitbuddy.data.model.response.search.SearchResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.remote.ApiClient
 

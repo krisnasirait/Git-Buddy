@@ -1,9 +1,12 @@
-package com.krisna.gitbuddy.data.model
+package com.krisna.gitbuddy.data.model.response.search
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-data class Search(
+@Parcelize
+data class SearchResponseItem(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("events_url")
@@ -42,4 +45,4 @@ data class Search(
     val type: String,
     @SerializedName("url")
     val url: String
-)
+): Parcelable
