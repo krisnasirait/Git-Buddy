@@ -1,9 +1,13 @@
-package com.krisna.gitbuddy.data.model.response
+package com.krisna.gitbuddy.data.model.response.detail
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
-data class ProfileResponse(
+@Parcelize
+data class DetailUserResponse(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("bio")
@@ -11,11 +15,11 @@ data class ProfileResponse(
     @SerializedName("blog")
     val blog: String,
     @SerializedName("company")
-    val company: Any,
+    val company: @RawValue Any,
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("email")
-    val email: Any,
+    val email: String,
     @SerializedName("events_url")
     val eventsUrl: String,
     @SerializedName("followers")
@@ -31,13 +35,13 @@ data class ProfileResponse(
     @SerializedName("gravatar_id")
     val gravatarId: String,
     @SerializedName("hireable")
-    val hireable: Any,
+    val hireable: @RawValue Any,
     @SerializedName("html_url")
     val htmlUrl: String,
     @SerializedName("id")
     val id: Int,
     @SerializedName("location")
-    val location: Any,
+    val location: @RawValue Any,
     @SerializedName("login")
     val login: String,
     @SerializedName("name")
@@ -61,11 +65,11 @@ data class ProfileResponse(
     @SerializedName("subscriptions_url")
     val subscriptionsUrl: String,
     @SerializedName("twitter_username")
-    val twitterUsername: Any,
+    val twitterUsername: @RawValue Any,
     @SerializedName("type")
     val type: String,
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("url")
     val url: String
-)
+): Parcelable

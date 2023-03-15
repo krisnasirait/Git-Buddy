@@ -3,6 +3,7 @@ package com.krisna.gitbuddy.repository
 import com.krisna.gitbuddy.data.Utility
 import com.krisna.gitbuddy.data.model.response.search.SearchResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
+import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
 import com.krisna.gitbuddy.data.remote.ApiClient
 
 class GithubRepository {
@@ -12,5 +13,9 @@ class GithubRepository {
     }
     suspend fun searchUser(username: String) : SearchResponse {
         return ApiClient.instance.searchUser(username, Utility.authToken)
+    }
+
+    suspend fun getUserDetail(username: String) : DetailUserResponse {
+        return ApiClient.instance.getUser(username, Utility.authToken)
     }
 }

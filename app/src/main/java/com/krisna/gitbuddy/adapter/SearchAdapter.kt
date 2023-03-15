@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krisna.gitbuddy.data.model.response.search.SearchResponseItem
-import com.krisna.gitbuddy.databinding.ItemUserRvBinding
+import com.krisna.gitbuddy.databinding.ItemSearchBinding
 
 class SearchAdapter(
     private val itemClickListener: OnItemClickListener
@@ -15,7 +15,7 @@ class SearchAdapter(
 
     private val itemList = mutableListOf<SearchResponseItem?>()
 
-    inner class SearchViewHolder(private val binding: ItemUserRvBinding) :
+    inner class SearchViewHolder(private val binding: ItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchResponseItem) {
             binding.tvName.text = item.login
@@ -24,14 +24,14 @@ class SearchAdapter(
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
             binding.root.setOnClickListener{
-                itemClickListener.onItemClick(item)
+                itemClickListener.onSearchItemClicked(item)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
-            ItemUserRvBinding.inflate(
+            ItemSearchBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -54,7 +54,7 @@ class SearchAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(article: Parcelable)
+        fun onSearchItemClicked(searchResponseItem: Parcelable)
     }
 
 
