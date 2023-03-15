@@ -17,7 +17,10 @@ import com.krisna.gitbuddy.adapter.UserAdapter
 import com.krisna.gitbuddy.databinding.ActivityMainBinding
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
-class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, SearchAdapter.OnItemClickListener {
+class MainActivity :
+    AppCompatActivity(),
+    UserAdapter.OnItemClickListener,
+    SearchAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterUser: UserAdapter
@@ -55,8 +58,8 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, Searc
             adapterUser.setData(allUser ?: emptyList())
         }
 
-        githubViewModel.users.observe(this) { users ->
-            adapterSearch.setSearch(users ?: emptyList())
+        githubViewModel.search.observe(this) { search ->
+            adapterSearch.setSearch(search ?: emptyList())
             binding.rvUser.adapter = adapterSearch
         }
 
@@ -75,12 +78,10 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, Searc
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
                 githubViewModel.searchUser(query)
                 searchView.clearFocus()
                 return true
             }
-
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText.isNotEmpty()) {
                     githubViewModel.searchUser(newText)
@@ -88,12 +89,11 @@ class MainActivity : AppCompatActivity(), UserAdapter.OnItemClickListener, Searc
                 return false
             }
         })
-
         return true
     }
 
     override fun onItemClick(article: Parcelable) {
-        // Handle item click
+
     }
 
 }

@@ -16,8 +16,8 @@ class GithubViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
 
-    private val _users = MutableLiveData<List<SearchResponseItem?>?>()
-    val users: LiveData<List<SearchResponseItem?>?> = _users
+    private val _search = MutableLiveData<List<SearchResponseItem?>?>()
+    val search: LiveData<List<SearchResponseItem?>?> = _search
 
     private val _allUser = MutableLiveData<AllUserResponse?>()
     val allUser: LiveData<AllUserResponse?> = _allUser
@@ -56,7 +56,7 @@ class GithubViewModel: ViewModel() {
                }
            }.onSuccess { data ->
                withContext(Dispatchers.Main) {
-                   _users.value = data.searchResponseItems
+                   _search.value = data.searchResponseItems
                    _isLoading.value = false
                }
            }.onFailure { error ->
