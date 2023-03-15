@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.krisna.gitbuddy.data.model.response.search.SearchResponseItem
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponseItem
-import com.krisna.gitbuddy.databinding.ItemUserRvBinding
+import com.krisna.gitbuddy.databinding.ItemUserListBinding
 
 class UserAdapter(
     private val itemClickListener: OnItemClickListener
@@ -17,11 +16,10 @@ class UserAdapter(
 
     private val itemList = mutableListOf<AllUserResponseItem>()
 
-    inner class UserViewHolder(private val binding: ItemUserRvBinding) :
+    inner class UserViewHolder(private val binding: ItemUserListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AllUserResponseItem) {
             binding.tvName.text = item.login
-            binding.tvId.text = item.nodeId
             Glide.with(binding.root)
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
@@ -33,7 +31,7 @@ class UserAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
-            ItemUserRvBinding.inflate(
+            ItemUserListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
