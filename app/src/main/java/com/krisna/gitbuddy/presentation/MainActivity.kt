@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krisna.gitbuddy.R
 import com.krisna.gitbuddy.adapter.SearchAdapter
-import com.krisna.gitbuddy.data.remote.ApiClient
+import com.krisna.gitbuddy.data.model.Search
 import com.krisna.gitbuddy.databinding.ActivityMainBinding
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
@@ -40,11 +40,20 @@ class MainActivity : AppCompatActivity() {
             binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
+        githubViewModel.getAllUsers()
+
+        githubViewModel.allUser.observe(this) { allUser ->
+            if (allUser != null) {
+                adapterUser.setData(allUser)
+                adapterUser.notifyDataSetChanged()
+            }
+        }
+
 
 
         githubViewModel.users.observe(this) { users ->
             if (users != null) {
-                adapterUser.setDataUser(users)
+                adapterUser.setSearch(users as List<Search>)
                 adapterUser.notifyDataSetChanged()
             }
         }
