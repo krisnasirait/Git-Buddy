@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +30,7 @@ class MainActivity :
     private lateinit var githubViewModel: GithubViewModel
 
 
-    private lateinit var username :  String
+    private lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +87,7 @@ class MainActivity :
                 searchView.clearFocus()
                 return true
             }
+
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText.isNotEmpty()) {
                     githubViewModel.searchUser(newText)
@@ -95,17 +98,15 @@ class MainActivity :
         return true
     }
 
-    override fun onItemUserListClicked(allUserResponseItem: Parcelable) {
-        val intent = Intent(this, DetailActivity::class.java).apply {
-            putExtra("clickedUser", allUserResponseItem)
-        }
+    override fun onItemUserListClicked(username: String) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("username", username)
         startActivity(intent)
     }
 
-    override fun onSearchItemClicked(searchResponseItem: Parcelable) {
-        val intent = Intent(this, DetailActivity::class.java).apply {
-            putExtra("clickedSearch", searchResponseItem)
-        }
+    override fun onSearchItemClicked(username: String) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("username", username)
         startActivity(intent)
     }
 

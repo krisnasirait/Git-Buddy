@@ -23,7 +23,7 @@ class UserAdapter(
                 .load(item.avatarUrl)
                 .into(binding.cvProfilePict)
             binding.root.setOnClickListener {
-                itemClickListener.onItemUserListClicked(item)
+                itemClickListener.onItemUserListClicked(item.login)
             }
         }
     }
@@ -54,7 +54,7 @@ class UserAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemUserListClicked(allUserResponseItem: Parcelable)
+        fun onItemUserListClicked(username: String)
     }
 
 

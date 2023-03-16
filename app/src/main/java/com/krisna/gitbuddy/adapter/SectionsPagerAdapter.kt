@@ -1,7 +1,6 @@
 package com.krisna.gitbuddy.adapter
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.krisna.gitbuddy.presentation.fragment.FollowersFragment
 import com.krisna.gitbuddy.presentation.fragment.FollowingFragment
