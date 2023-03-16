@@ -1,5 +1,6 @@
 package com.krisna.gitbuddy.data.remote
 
+import com.krisna.gitbuddy.data.model.response.FollowingResponse
 import com.krisna.gitbuddy.data.model.response.search.SearchResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
@@ -43,6 +44,6 @@ interface ApiService {
     suspend fun getUserFollowing(
         @Path("username") username: String,
         @Header("Authorization") token: String
-    ): FollowersResponse
+    ): FollowingResponse
 
 }
