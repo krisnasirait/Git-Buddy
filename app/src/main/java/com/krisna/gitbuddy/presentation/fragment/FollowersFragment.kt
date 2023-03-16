@@ -1,21 +1,24 @@
 package com.krisna.gitbuddy.presentation.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.krisna.gitbuddy.adapter.FollowersAdapter
 import com.krisna.gitbuddy.databinding.FragmentFollowersBinding
+import com.krisna.gitbuddy.presentation.DetailActivity
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
-class FollowersFragment : Fragment() {
+class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentFollowersBinding
     private lateinit var githubViewModel: GithubViewModel
+    private lateinit var adapterFollowers: FollowersAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +30,8 @@ class FollowersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRvFollowers()
+
         githubViewModel = ViewModelProvider(requireActivity())[GithubViewModel::class.java]
 
         githubViewModel.clickedUsername.observe(viewLifecycleOwner) { username ->
@@ -34,8 +39,25 @@ class FollowersFragment : Fragment() {
             githubViewModel.getUserFollowers(username)
         }
 
-        githubViewModel.userFollowers.observe(requireActivity()) { userFollowers ->
-            binding.tvText.text = userFollowers?.get(0)?.login
+        githubViewModel.userFollowers.observe(requireActivity()) {
+            githubViewModel.userFollowers.observe(requireActivity()) { followers ->
+               adapterFollowers.setFollowers(followers ?: emptyList())
+           }
         }
+    }
+
+    private fun setupRvFollowers() {
+        adapterFollowers = FollowersAdapter(this)
+        binding.rvFollowers.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = adapterFollowers
+        }
+    }
+
+    override fun onSearchItemClicked(username: String) {
+        val intent = Intent(requireActivity(), DetailActivity::class.java)
+        intent.putExtra("username", username)
+        startActivity(intent)
     }
 }

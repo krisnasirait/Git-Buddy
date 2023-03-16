@@ -29,7 +29,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/cvProfile"
             app:layout_constraintBottom_toTopOf="@id/tvUserId"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="10dp"
+            android:text="test"/>
 
         <TextView
             android:id="@+id/tvUserId"
@@ -37,9 +38,10 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"
-            app:layout_constraintBottom_toBottomOf="@id/cvProfile"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/cvProfile"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="10dp"
+            android:text="test"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

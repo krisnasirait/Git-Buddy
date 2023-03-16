@@ -1,6 +1,7 @@
 package com.krisna.gitbuddy.repository
 
 import com.krisna.gitbuddy.data.Utility
+import com.krisna.gitbuddy.data.model.response.FollowingResponse
 import com.krisna.gitbuddy.data.model.response.search.SearchResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
@@ -21,5 +22,9 @@ class GithubRepository {
 
     suspend fun getUserFollowers(username: String) : FollowersResponse {
         return ApiClient.instance.getUserFollowers(username, Utility.authToken)
+    }
+
+    suspend fun getUserFollowing(username: String) : FollowingResponse {
+        return ApiClient.instance.getUserFollowing(username, Utility.authToken)
     }
 }

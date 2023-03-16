@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.krisna.gitbuddy.data.model.response.FollowingResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
 import com.krisna.gitbuddy.data.model.response.followers.FollowersResponse
@@ -30,6 +31,9 @@ class GithubViewModel: ViewModel() {
 
     private val _userFollowers = MutableLiveData<FollowersResponse?>()
     val userFollowers: LiveData<FollowersResponse?> = _userFollowers
+
+    private val _userFollowing = MutableLiveData<FollowingResponse?>()
+    val userFollowing: LiveData<FollowingResponse?> = _userFollowing
 
     private val _clickedUsername = MutableLiveData<String>()
     val clickedUsername: LiveData<String>
@@ -112,6 +116,27 @@ class GithubViewModel: ViewModel() {
             }.onSuccess { userFollowers ->
                 withContext(Dispatchers.Main) {
                     _userFollowers.value = userFollowers
+                    _isLoading.value = false
+                }
+            }.onFailure { error ->
+                withContext(Dispatchers.Main) {
+                    _errorMessage.value = "Error found : ${error.message}"
+                    _isLoading.value = false
+                }
+            }
+        }
+    }
+
+    fun getUserFollowing(username: String) {
+        viewModelScope.launch {
+            runCatching {
+                _isLoading.value = true
+                withContext(Dispatchers.IO) {
+                    GithubRepository().getUserFollowing(username)
+                }
+            }.onSuccess { userFollowing ->
+                withContext(Dispatchers.Main) {
+                    _userFollowing.value = userFollowing
                     _isLoading.value = false
                 }
             }.onFailure { error ->
