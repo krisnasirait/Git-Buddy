@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.krisna.gitbuddy.adapter.SectionsPagerAdapter
 import com.krisna.gitbuddy.databinding.ActivityDetailBinding
@@ -16,7 +14,7 @@ import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var githubViewModel: GithubViewModel
+    private lateinit var viewModel: GithubViewModel
     private var followersCount: Int = 0
     private var followingCount: Int = 0
 
@@ -25,36 +23,46 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        val viewPager = binding.viewpager
-        val tabLayout = binding.tabs
-        viewPager.adapter = sectionsPagerAdapter
+        setupActionBar()
+        setupViewModel()
+        setupTabLayout()
+        observeData()
+    }
 
-        supportActionBar?.elevation = 0f
-        supportActionBar?.title = "Detail User"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            elevation = 0f
+            title = "Detail User"
+            setDisplayHomeAsUpEnabled(true)
+        }
+    }
 
-        githubViewModel = ViewModelProvider(this)[GithubViewModel::class.java]
-
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[GithubViewModel::class.java]
         val username = intent.getStringExtra("username")
-
         username?.let {
-            githubViewModel.getUserDetail(it)
-            githubViewModel.setClickedUsername(username)
-            githubViewModel.getUserFollowers(username)
-            githubViewModel.getUserFollowing(username)
+            viewModel.getUserDetail(it)
+            viewModel.setClickedUsername(username)
+            viewModel.getUserFollowers(username)
+            viewModel.getUserFollowing(username)
         }
+    }
 
-        githubViewModel.countFollowers.observe(this) { followersAmount ->
+    private fun setupTabLayout() {
+        binding.viewpager.adapter = SectionsPagerAdapter(this)
+    }
+
+    private fun observeData() {
+        viewModel.countFollowers.observe(this) { followersAmount ->
             followersCount = followersAmount ?: 0
-            updateTabTitles(tabLayout, viewPager, followersCount, followingCount)
+            updateTabTitles()
         }
-        githubViewModel.countFollowing.observe(this) { followingAmount ->
+        viewModel.countFollowing.observe(this) { followingAmount ->
             followingCount = followingAmount ?: 0
-            updateTabTitles(tabLayout, viewPager, followersCount, followingCount)
+            updateTabTitles()
         }
 
-        githubViewModel.detailUser.observe(this) { data ->
+        viewModel.detailUser.observe(this) { data ->
             binding.tvName.text = data?.name
             binding.tvBio.text = data?.bio
             binding.tvEmail.text = data?.email
@@ -62,6 +70,15 @@ class DetailActivity : AppCompatActivity() {
                 .load(data?.avatarUrl)
                 .into(binding.cvProfile)
         }
+    }
+
+    private fun updateTabTitles() {
+        TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "$followersCount Followers"
+                1 -> tab.text = "$followingCount Following"
+            }
+        }.attach()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -72,14 +89,5 @@ class DetailActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun updateTabTitles(tabLayout: TabLayout, viewPager: ViewPager2, followersCount: Int, followingCount: Int) {
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            when (position) {
-                0 -> tab.text = "$followersCount Followers"
-                1 -> tab.text = "$followingCount Following"
-            }
-        }.attach()
     }
 }
