@@ -4,11 +4,8 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -29,9 +26,6 @@ class MainActivity :
     private lateinit var adapterSearch: SearchAdapter
     private lateinit var githubViewModel: GithubViewModel
 
-
-    private lateinit var username: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,13 +34,15 @@ class MainActivity :
         setupRecyclerView()
 
         setupViewModelObservers()
+
+        supportActionBar?.title = "Home"
     }
 
     private fun setupRecyclerView() {
         adapterUser = UserAdapter(this)
         adapterSearch = SearchAdapter(this)
         binding.rvUser.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager =  LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = adapterUser
         }

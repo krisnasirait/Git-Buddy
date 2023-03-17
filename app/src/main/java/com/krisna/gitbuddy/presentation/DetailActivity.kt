@@ -1,12 +1,11 @@
 package com.krisna.gitbuddy.presentation
 
 import android.os.Bundle
-import androidx.annotation.StringRes
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
-import com.krisna.gitbuddy.R
 import com.krisna.gitbuddy.adapter.SectionsPagerAdapter
 import com.krisna.gitbuddy.databinding.ActivityDetailBinding
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
@@ -15,41 +14,55 @@ import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var githubViewModel: GithubViewModel
-
-    companion object {
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-    }
+    private lateinit var viewModel: GithubViewModel
+    private var followersCount: Int = 0
+    private var followingCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        val viewPager = binding.viewpager
-        viewPager.adapter = sectionsPagerAdapter
+        setupActionBar()
+        setupViewModel()
+        setupTabLayout()
+        observeData()
+    }
 
-        TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
-        }.attach()
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            elevation = 0f
+            title = "Detail User"
+            setDisplayHomeAsUpEnabled(true)
+        }
+    }
 
-        supportActionBar?.elevation = 0f
-
-        githubViewModel = ViewModelProvider(this)[GithubViewModel::class.java]
-
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[GithubViewModel::class.java]
         val username = intent.getStringExtra("username")
-
         username?.let {
-            githubViewModel.getUserDetail(it)
-            githubViewModel.setClickedUsername(username)
+            viewModel.getUserDetail(it)
+            viewModel.setClickedUsername(username)
+            viewModel.getUserFollowers(username)
+            viewModel.getUserFollowing(username)
+        }
+    }
+
+    private fun setupTabLayout() {
+        binding.viewpager.adapter = SectionsPagerAdapter(this)
+    }
+
+    private fun observeData() {
+        viewModel.countFollowers.observe(this) { followersAmount ->
+            followersCount = followersAmount ?: 0
+            updateTabTitles()
+        }
+        viewModel.countFollowing.observe(this) { followingAmount ->
+            followingCount = followingAmount ?: 0
+            updateTabTitles()
         }
 
-        githubViewModel.detailUser.observe(this) { data ->
+        viewModel.detailUser.observe(this) { data ->
             binding.tvName.text = data?.name
             binding.tvBio.text = data?.bio
             binding.tvEmail.text = data?.email
@@ -57,6 +70,24 @@ class DetailActivity : AppCompatActivity() {
                 .load(data?.avatarUrl)
                 .into(binding.cvProfile)
         }
+    }
 
+    private fun updateTabTitles() {
+        TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "$followersCount Followers"
+                1 -> tab.text = "$followingCount Following"
+            }
+        }.attach()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

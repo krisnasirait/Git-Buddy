@@ -1,5 +1,5 @@
 package com.krisna.gitbuddy.data
 
 object Utility {
-    const val authToken = "token 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"
+    const val authToken = "token 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"
 }
