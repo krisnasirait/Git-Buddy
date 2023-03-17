@@ -42,7 +42,9 @@ class FollowersAdapter(
     }
 
     override fun onBindViewHolder(holder: FollowersViewHolder, position: Int) {
-        itemList[position]?.let { holder.bind(it) }
+        itemList[position]?.let {
+            holder.bind(it)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

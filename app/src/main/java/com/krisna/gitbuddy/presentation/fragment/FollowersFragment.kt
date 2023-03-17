@@ -19,6 +19,7 @@ class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
     private lateinit var binding: FragmentFollowersBinding
     private lateinit var githubViewModel: GithubViewModel
     private lateinit var adapterFollowers: FollowersAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,10 +40,8 @@ class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
             githubViewModel.getUserFollowers(username)
         }
 
-        githubViewModel.userFollowers.observe(requireActivity()) {
-            githubViewModel.userFollowers.observe(requireActivity()) { followers ->
-               adapterFollowers.setFollowers(followers ?: emptyList())
-           }
+        githubViewModel.userFollowers.observe(requireActivity()) { followers ->
+            adapterFollowers.setFollowers(followers ?: emptyList())
         }
     }
 
