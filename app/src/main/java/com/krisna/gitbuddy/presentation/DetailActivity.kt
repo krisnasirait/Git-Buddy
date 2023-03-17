@@ -54,15 +54,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        viewModel.countFollowers.observe(this) { followersAmount ->
-            followersCount = followersAmount ?: 0
-            updateTabTitles()
-        }
-        viewModel.countFollowing.observe(this) { followingAmount ->
-            followingCount = followingAmount ?: 0
-            updateTabTitles()
-        }
-
         viewModel.isLoading.observe(this) { isLoading ->
             binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
@@ -71,6 +62,9 @@ class DetailActivity : AppCompatActivity() {
             binding.tvName.text = data?.name
             binding.tvBio.text = data?.bio
             binding.tvUsername.text = data?.login
+            followersCount = data?.followers ?: 0
+            followingCount = data?.following ?: 0
+            updateTabTitles()
             Glide.with(binding.root)
                 .load(data?.avatarUrl)
                 .into(binding.cvProfile)

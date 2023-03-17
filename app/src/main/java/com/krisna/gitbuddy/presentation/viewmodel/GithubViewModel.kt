@@ -35,19 +35,11 @@ class GithubViewModel: ViewModel() {
     private val _userFollowing = MutableLiveData<FollowingResponse?>()
     val userFollowing: LiveData<FollowingResponse?> = _userFollowing
 
-    private val _countFollowers = MutableLiveData<Int?>()
-    val countFollowers: LiveData<Int?> = _countFollowers
-
-    private val _countFollowing = MutableLiveData<Int?>()
-    val countFollowing: LiveData<Int?> = _countFollowing
-
     private val _clickedUsername = MutableLiveData<String>()
     val clickedUsername: LiveData<String>
         get() = _clickedUsername
 
     private val _errorMessage = MutableLiveData<String>()
-    val errorMessage : LiveData<String> = _errorMessage
-
 
     fun getAllUsers() {
         viewModelScope.launch {
@@ -122,7 +114,6 @@ class GithubViewModel: ViewModel() {
             }.onSuccess { userFollowers ->
                 withContext(Dispatchers.Main) {
                     _userFollowers.value = userFollowers
-                    _countFollowers.value = userFollowers.size
                     Log.d("savedUsername", "followersInVM : ${userFollowers.size}")
                     _isLoading.value = false
                 }
@@ -145,7 +136,6 @@ class GithubViewModel: ViewModel() {
             }.onSuccess { userFollowing ->
                 withContext(Dispatchers.Main) {
                     _userFollowing.value = userFollowing
-                    _countFollowing.value = userFollowing.size
                     Log.d("savedUsername", "followingInVM : ${userFollowing.size}")
                     _isLoading.value = false
                 }
