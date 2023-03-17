@@ -41,6 +41,10 @@ class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
                 adapter.setFollowers(followers)
             }
         }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 
     override fun onSearchItemClicked(username: String) {

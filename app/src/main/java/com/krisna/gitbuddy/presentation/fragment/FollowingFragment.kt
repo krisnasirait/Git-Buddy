@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krisna.gitbuddy.adapter.FollowingAdapter
@@ -16,7 +17,7 @@ import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 class FollowingFragment : Fragment(), FollowingAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentFollowingBinding
-    private lateinit var githubViewModel: GithubViewModel
+    private val viewModel: GithubViewModel by activityViewModels()
     private lateinit var adapterFollowing: FollowingAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,20 +31,24 @@ class FollowingFragment : Fragment(), FollowingAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         setupRvFollowing()
-
-        githubViewModel = ViewModelProvider(requireActivity())[GithubViewModel::class.java]
-
-        githubViewModel.clickedUsername.observe(viewLifecycleOwner) { username ->
-            githubViewModel.getUserFollowing(username)
-        }
-
-        githubViewModel.userFollowing.observe(requireActivity()) {
-            githubViewModel.userFollowing.observe(requireActivity()) { following ->
-                adapterFollowing.setFollowing(following ?: emptyList())
-            }
-        }
+        observeViewModel()
     }
 
+    private fun observeViewModel() {
+        viewModel.clickedUsername.observe(viewLifecycleOwner) { username ->
+            viewModel.getUserFollowers(username)
+        }
+
+        viewModel.userFollowing.observe(viewLifecycleOwner) { following ->
+            if (following != null) {
+                adapterFollowing.setFollowing(following)
+            }
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
     private fun setupRvFollowing() {
         adapterFollowing = FollowingAdapter(this)
         binding.rvFollowing.apply {

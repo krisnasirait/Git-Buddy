@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:lottie_fileName="99318-hms-loading.json"
+        app:lottie_fileName="98993-three-dots-loading.json"
         android:visibility="invisible"
         app:lottie_loop="true"
         app:lottie_autoPlay="true"/>

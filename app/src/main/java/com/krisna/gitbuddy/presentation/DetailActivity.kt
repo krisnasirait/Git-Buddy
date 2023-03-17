@@ -2,6 +2,7 @@ package com.krisna.gitbuddy.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -60,6 +61,10 @@ class DetailActivity : AppCompatActivity() {
         viewModel.countFollowing.observe(this) { followingAmount ->
             followingCount = followingAmount ?: 0
             updateTabTitles()
+        }
+
+        viewModel.isLoading.observe(this) { isLoading ->
+            binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
         viewModel.detailUser.observe(this) { data ->
