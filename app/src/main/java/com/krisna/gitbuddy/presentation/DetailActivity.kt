@@ -70,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
         viewModel.detailUser.observe(this) { data ->
             binding.tvName.text = data?.name
             binding.tvBio.text = data?.bio
-            binding.tvEmail.text = data?.email
+            binding.tvUsername.text = data?.login
             Glide.with(binding.root)
                 .load(data?.avatarUrl)
                 .into(binding.cvProfile)
