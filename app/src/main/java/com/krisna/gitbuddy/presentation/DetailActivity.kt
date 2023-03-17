@@ -1,6 +1,7 @@
 package com.krisna.gitbuddy.presentation
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +40,8 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
 
         supportActionBar?.elevation = 0f
+        supportActionBar?.title = "Detail User"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         githubViewModel = ViewModelProvider(this)[GithubViewModel::class.java]
 
@@ -58,5 +61,15 @@ class DetailActivity : AppCompatActivity() {
                 .into(binding.cvProfile)
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

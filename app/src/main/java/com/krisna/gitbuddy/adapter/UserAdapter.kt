@@ -1,7 +1,6 @@
 package com.krisna.gitbuddy.adapter
 
 import android.annotation.SuppressLint
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,10 +17,10 @@ class UserAdapter(
     inner class UserViewHolder(private val binding: ItemUserListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AllUserResponseItem) {
-            binding.tvName.text = item.login
+            binding.tvUsername.text = item.login
             Glide.with(binding.root)
                 .load(item.avatarUrl)
-                .into(binding.cvProfilePict)
+                .into(binding.cvProfile)
             binding.root.setOnClickListener {
                 itemClickListener.onItemUserListClicked(item.login)
             }

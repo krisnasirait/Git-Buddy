@@ -18,11 +18,10 @@ class SearchAdapter(
     inner class SearchViewHolder(private val binding: ItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchResponseItem) {
-            binding.tvName.text = item.login
-            binding.tvId.text = item.id.toString()
+            binding.tvUsername.text = item.login
             Glide.with(binding.root)
                 .load(item.avatarUrl)
-                .into(binding.cvProfilePict)
+                .into(binding.cvProfile)
             binding.root.setOnClickListener{
                 itemClickListener.onSearchItemClicked(item.login)
             }
