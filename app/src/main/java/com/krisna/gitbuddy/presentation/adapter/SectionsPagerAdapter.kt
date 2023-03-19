@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy.adapter
+package com.krisna.gitbuddy.presentation.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter

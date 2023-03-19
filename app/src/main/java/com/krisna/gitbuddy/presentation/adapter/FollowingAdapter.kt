@@ -1,35 +1,35 @@
-package com.krisna.gitbuddy.adapter
+package com.krisna.gitbuddy.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.krisna.gitbuddy.data.model.response.followers.FollowersResponseItem
+import com.krisna.gitbuddy.data.model.response.FollowingResponseItem
 import com.krisna.gitbuddy.databinding.ItemFollowersFollowingBinding
 
-class FollowersAdapter(
+class FollowingAdapter(
     private val itemClickListener: OnItemClickListener
-) : RecyclerView.Adapter<FollowersAdapter.FollowersViewHolder>() {
+) : RecyclerView.Adapter<FollowingAdapter.FollowingViewHolder>() {
 
-    private val itemList = mutableListOf<FollowersResponseItem?>()
+    private val itemList = mutableListOf<FollowingResponseItem?>()
 
-    inner class FollowersViewHolder(private val binding: ItemFollowersFollowingBinding) :
+    inner class FollowingViewHolder(private val binding: ItemFollowersFollowingBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FollowersResponseItem) {
+        fun bind(item: FollowingResponseItem) {
             binding.tvUsername.text = item.login
             binding.tvUserId.text = item.id.toString()
             Glide.with(binding.root)
                 .load(item.avatarUrl)
                 .into(binding.cvProfile)
             binding.root.setOnClickListener{
-                itemClickListener.onSearchItemClicked(item.login)
+                itemClickListener.onFollowingIitemClicked(item.login)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowersViewHolder {
-        return FollowersViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowingViewHolder {
+        return FollowingViewHolder(
             ItemFollowersFollowingBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -41,21 +41,19 @@ class FollowersAdapter(
         return itemList.size
     }
 
-    override fun onBindViewHolder(holder: FollowersViewHolder, position: Int) {
-        itemList[position]?.let {
-            holder.bind(it)
-        }
+    override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) {
+        itemList[position]?.let { holder.bind(it) }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFollowers(data: List<FollowersResponseItem?>) {
+    fun setFollowing(data: List<FollowingResponseItem?>) {
         itemList.clear()
         itemList.addAll(data)
         notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun onSearchItemClicked(username: String)
+        fun onFollowingIitemClicked(username: String)
     }
 
 

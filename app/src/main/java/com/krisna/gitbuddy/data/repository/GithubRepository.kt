@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy.repository
+package com.krisna.gitbuddy.data.repository
 
 import com.krisna.gitbuddy.data.Utility
 import com.krisna.gitbuddy.data.model.response.FollowingResponse

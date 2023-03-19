@@ -10,7 +10,7 @@ import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
 import com.krisna.gitbuddy.data.model.response.followers.FollowersResponse
 import com.krisna.gitbuddy.data.model.response.search.SearchResponseItem
-import com.krisna.gitbuddy.repository.GithubRepository
+import com.krisna.gitbuddy.data.repository.GithubRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
