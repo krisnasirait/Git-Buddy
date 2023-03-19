@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.krisna.gitbuddy.data.model.response.search.SearchResponseItem
 import com.krisna.gitbuddy.databinding.ItemSearchBinding
 
@@ -18,12 +19,15 @@ class SearchAdapter(
     inner class SearchViewHolder(private val binding: ItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchResponseItem) {
-            binding.tvUsername.text = item.login
-            Glide.with(binding.root)
-                .load(item.avatarUrl)
-                .into(binding.cvProfile)
-            binding.root.setOnClickListener{
-                itemClickListener.onSearchItemClicked(item.login)
+            binding.apply {
+                tvUsername.text = item.login
+                Glide.with(root)
+                    .load(item.avatarUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(cvProfile)
+                root.setOnClickListener{
+                    itemClickListener.onSearchItemClicked(item.login)
+                }
             }
         }
     }

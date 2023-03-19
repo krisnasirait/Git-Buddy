@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.krisna.gitbuddy.data.model.response.followers.FollowersResponseItem
 import com.krisna.gitbuddy.databinding.ItemFollowersFollowingBinding
 
@@ -17,13 +18,16 @@ class FollowersAdapter(
     inner class FollowersViewHolder(private val binding: ItemFollowersFollowingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: FollowersResponseItem) {
-            binding.tvUsername.text = item.login
-            binding.tvUserId.text = item.id.toString()
-            Glide.with(binding.root)
-                .load(item.avatarUrl)
-                .into(binding.cvProfile)
-            binding.root.setOnClickListener{
-                itemClickListener.onSearchItemClicked(item.login)
+            binding.apply {
+                tvUsername.text = item.login
+                tvUserId.text = "${item.id}"
+                Glide.with(root)
+                    .load(item.avatarUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(cvProfile)
+                root.setOnClickListener{
+                    itemClickListener.onSearchItemClicked(item.login)
+                }
             }
         }
     }
