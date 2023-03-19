@@ -11,8 +11,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.krisna.gitbuddy.R
-import com.krisna.gitbuddy.adapter.SearchAdapter
-import com.krisna.gitbuddy.adapter.UserAdapter
+import com.krisna.gitbuddy.presentation.adapter.SearchAdapter
+import com.krisna.gitbuddy.presentation.adapter.UserAdapter
 import com.krisna.gitbuddy.databinding.ActivityMainBinding
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 

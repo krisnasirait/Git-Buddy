@@ -1,10 +1,11 @@
-package com.krisna.gitbuddy.adapter
+package com.krisna.gitbuddy.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponseItem
 import com.krisna.gitbuddy.databinding.ItemUserListBinding
 
@@ -17,12 +18,15 @@ class UserAdapter(
     inner class UserViewHolder(private val binding: ItemUserListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AllUserResponseItem) {
-            binding.tvUsername.text = item.login
-            Glide.with(binding.root)
-                .load(item.avatarUrl)
-                .into(binding.cvProfile)
-            binding.root.setOnClickListener {
-                itemClickListener.onItemUserListClicked(item.login)
+            binding.apply {
+                tvUsername.text = item.login
+                Glide.with(root)
+                    .load(item.avatarUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(cvProfile)
+                root.setOnClickListener{
+                    itemClickListener.onItemUserListClicked(item.login)
+                }
             }
         }
     }
