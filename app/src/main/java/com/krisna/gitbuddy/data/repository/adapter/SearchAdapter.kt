@@ -1,26 +1,26 @@
-package com.krisna.gitbuddy.presentation.adapter
+package com.krisna.gitbuddy.data.repository.adapter
 
 import android.annotation.SuppressLint
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.krisna.gitbuddy.data.model.response.followers.FollowersResponseItem
-import com.krisna.gitbuddy.databinding.ItemFollowersFollowingBinding
+import com.krisna.gitbuddy.data.model.response.search.SearchResponseItem
+import com.krisna.gitbuddy.databinding.ItemSearchBinding
 
-class FollowersAdapter(
+class SearchAdapter(
     private val itemClickListener: OnItemClickListener
-) : RecyclerView.Adapter<FollowersAdapter.FollowersViewHolder>() {
+) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    private val itemList = mutableListOf<FollowersResponseItem?>()
+    private val itemList = mutableListOf<SearchResponseItem?>()
 
-    inner class FollowersViewHolder(private val binding: ItemFollowersFollowingBinding) :
+    inner class SearchViewHolder(private val binding: ItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FollowersResponseItem) {
+        fun bind(item: SearchResponseItem) {
             binding.apply {
                 tvUsername.text = item.login
-                tvUserId.text = "${item.id}"
                 Glide.with(root)
                     .load(item.avatarUrl)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -32,27 +32,25 @@ class FollowersAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowersViewHolder {
-        return FollowersViewHolder(
-            ItemFollowersFollowingBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+        return SearchViewHolder(
+            ItemSearchBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    override fun onBindViewHolder(holder: FollowersViewHolder, position: Int) {
-        itemList[position]?.let {
-            holder.bind(it)
-        }
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+        itemList[position]?.let { holder.bind(it) }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFollowers(data: List<FollowersResponseItem?>) {
+    fun setSearch(data: List<SearchResponseItem?>) {
         itemList.clear()
         itemList.addAll(data)
         notifyDataSetChanged()

@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy.data.model.response
+package com.krisna.gitbuddy.data.model.response.following
 
 
 import com.google.gson.annotations.SerializedName

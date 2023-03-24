@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy.presentation.adapter
+package com.krisna.gitbuddy.data.repository.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.krisna.gitbuddy.data.model.response.FollowingResponseItem
+import com.krisna.gitbuddy.data.model.response.followers.FollowersResponseItem
 import com.krisna.gitbuddy.databinding.ItemFollowersFollowingBinding
 
-class FollowingAdapter(
+class FollowersAdapter(
     private val itemClickListener: OnItemClickListener
-) : RecyclerView.Adapter<FollowingAdapter.FollowingViewHolder>() {
+) : RecyclerView.Adapter<FollowersAdapter.FollowersViewHolder>() {
 
-    private val itemList = mutableListOf<FollowingResponseItem?>()
+    private val itemList = mutableListOf<FollowersResponseItem?>()
 
-    inner class FollowingViewHolder(private val binding: ItemFollowersFollowingBinding) :
+    inner class FollowersViewHolder(private val binding: ItemFollowersFollowingBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FollowingResponseItem) {
+        fun bind(item: FollowersResponseItem) {
             binding.apply {
                 tvUsername.text = item.login
                 tvUserId.text = "${item.id}"
@@ -26,14 +26,14 @@ class FollowingAdapter(
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(cvProfile)
                 root.setOnClickListener{
-                    itemClickListener.onFollowingIitemClicked(item.login)
+                    itemClickListener.onSearchItemClicked(item.login)
                 }
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowingViewHolder {
-        return FollowingViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowersViewHolder {
+        return FollowersViewHolder(
             ItemFollowersFollowingBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -45,19 +45,21 @@ class FollowingAdapter(
         return itemList.size
     }
 
-    override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) {
-        itemList[position]?.let { holder.bind(it) }
+    override fun onBindViewHolder(holder: FollowersViewHolder, position: Int) {
+        itemList[position]?.let {
+            holder.bind(it)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFollowing(data: List<FollowingResponseItem?>) {
+    fun setFollowers(data: List<FollowersResponseItem?>) {
         itemList.clear()
         itemList.addAll(data)
         notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun onFollowingIitemClicked(username: String)
+        fun onSearchItemClicked(username: String)
     }
 
 

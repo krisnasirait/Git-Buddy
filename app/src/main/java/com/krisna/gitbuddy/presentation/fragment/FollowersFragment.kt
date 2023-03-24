@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.krisna.gitbuddy.presentation.adapter.FollowersAdapter
+import com.krisna.gitbuddy.data.repository.adapter.FollowersAdapter
 import com.krisna.gitbuddy.databinding.FragmentFollowersBinding
-import com.krisna.gitbuddy.presentation.DetailActivity
+import com.krisna.gitbuddy.presentation.activity.DetailActivity
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
 class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {

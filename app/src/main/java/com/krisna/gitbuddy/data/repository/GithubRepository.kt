@@ -1,7 +1,7 @@
 package com.krisna.gitbuddy.data.repository
 
 import com.krisna.gitbuddy.BuildConfig
-import com.krisna.gitbuddy.data.model.response.FollowingResponse
+import com.krisna.gitbuddy.data.model.response.following.FollowingResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
 import com.krisna.gitbuddy.data.model.response.followers.FollowersResponse

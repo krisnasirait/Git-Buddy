@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy.presentation
+package com.krisna.gitbuddy.presentation.activity
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
-import com.krisna.gitbuddy.presentation.adapter.SectionsPagerAdapter
+import com.krisna.gitbuddy.data.repository.adapter.SectionsPagerAdapter
 import com.krisna.gitbuddy.databinding.ActivityDetailBinding
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 

@@ -1,12 +1,10 @@
-package com.krisna.gitbuddy.presentation
+package com.krisna.gitbuddy.presentation.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Window
-import android.view.WindowManager
 import com.krisna.gitbuddy.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {

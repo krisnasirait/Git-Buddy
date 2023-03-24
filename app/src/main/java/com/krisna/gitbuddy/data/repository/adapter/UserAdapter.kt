@@ -1,4 +1,4 @@
-package com.krisna.gitbuddy.presentation.adapter
+package com.krisna.gitbuddy.data.repository.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
