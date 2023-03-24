@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.krisna.gitbuddy.data.model.response.FollowingResponse
+import com.krisna.gitbuddy.data.model.response.following.FollowingResponse
 import com.krisna.gitbuddy.data.model.response.alluser.AllUserResponse
 import com.krisna.gitbuddy.data.model.response.detail.DetailUserResponse
 import com.krisna.gitbuddy.data.model.response.followers.FollowersResponse
