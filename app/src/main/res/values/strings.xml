@@ -2,4 +2,8 @@
     <string name="app_name">Git Buddy</string>
     <string name="search_hint">Cari disini</string>
     <string name="title_home">Home</string>
+    <string name="ui_mode">UI Mode</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings">Settings</string>
 </resources>

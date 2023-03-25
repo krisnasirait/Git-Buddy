@@ -74,6 +74,14 @@ class MainActivity :
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
 
+        val settings = menu.findItem(R.id.setting)
+        settings.setOnMenuItemClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+            true
+        }
+
+
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.search_hint)
 

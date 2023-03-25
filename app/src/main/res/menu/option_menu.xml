@@ -9,8 +9,9 @@
         app:showAsAction="collapseActionView|always"/>
     <group android:menuCategory="container">
         <item
-            android:title="My Account"
-            android:icon="@drawable/ic_manage_accounts_24"
+            android:id="@+id/setting"
+            android:title="Settings"
+            android:icon="@drawable/ic_settings_24"
             app:showAsAction="always"/>
     </group>
 </menu>
