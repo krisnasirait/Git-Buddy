@@ -2,9 +2,7 @@ package com.krisna.gitbuddy.presentation.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +17,11 @@ class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
     private val viewModel: GithubViewModel by activityViewModels()
     private val adapter = FollowersAdapter(this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentFollowersBinding.inflate(inflater, container, false)
         setupRecyclerView()
         observeViewModel()

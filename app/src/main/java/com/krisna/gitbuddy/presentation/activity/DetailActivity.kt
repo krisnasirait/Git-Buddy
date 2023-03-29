@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import com.krisna.gitbuddy.R
 import com.krisna.gitbuddy.data.repository.adapter.SectionsPagerAdapter
 import com.krisna.gitbuddy.databinding.ActivityDetailBinding
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
@@ -31,12 +32,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
-        supportActionBar?.apply {
-            elevation = 0f
-            title = "Detail User"
-            setDisplayHomeAsUpEnabled(true)
-        }
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
+
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this)[GithubViewModel::class.java]

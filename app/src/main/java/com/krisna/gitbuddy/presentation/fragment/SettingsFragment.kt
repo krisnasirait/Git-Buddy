@@ -24,7 +24,8 @@ class SettingsFragment : Fragment() {
         updateDescriptionText()
 
         binding.lvLightDarkMode.setOnClickListener {
-            val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            val isDarkMode =
+                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
             val minFrame = 60
             val maxFrame = 134
             val speed = if (isDarkMode) -1f else 1f
@@ -38,7 +39,8 @@ class SettingsFragment : Fragment() {
                 override fun onAnimationStart(p0: Animator) {}
 
                 override fun onAnimationEnd(p0: Animator) {
-                    val nightMode = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
+                    val nightMode =
+                        if (isDarkMode) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
                     AppCompatDelegate.setDefaultNightMode(nightMode)
                     updateDescriptionText()
                 }
@@ -52,11 +54,12 @@ class SettingsFragment : Fragment() {
     }
 
     private fun updateDescriptionText() {
-        val textRes = if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-            R.string.dark_mode
-        } else {
-            R.string.light_mode
-        }
+        val textRes =
+            if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+                R.string.dark_mode
+            } else {
+                R.string.light_mode
+            }
         binding.tvDescription.text = getString(textRes)
     }
 }
