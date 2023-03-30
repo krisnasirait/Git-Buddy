@@ -4,23 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.krisna.gitbuddy.data.entity.User
-import com.krisna.gitbuddy.data.repository.dao.UserDao
+import com.krisna.gitbuddy.data.entity.FavoriteUser
+import com.krisna.gitbuddy.data.repository.dao.FavoriteUserDao
 
 @Database(
-    entities = [User::class],
+    entities = [FavoriteUser::class],
     version = 1
 )
-abstract class UserDatabase : RoomDatabase() {
-    abstract fun userDao(): UserDao
+abstract class FavUserDatabase : RoomDatabase() {
+    abstract fun userDao(): FavoriteUserDao
 
     companion object {
-        private var INSTANCE: UserDatabase? = null
-        fun getInstance(context: Context): UserDatabase {
+        private var INSTANCE: FavUserDatabase? = null
+        fun getInstance(context: Context): FavUserDatabase {
             synchronized(this) {
                 return INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
-                    UserDatabase::class.java,
+                    FavUserDatabase::class.java,
                     "user-db"
                 ).build().also {
                     INSTANCE = it
