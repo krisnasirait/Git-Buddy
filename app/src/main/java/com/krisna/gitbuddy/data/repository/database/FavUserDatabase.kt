@@ -12,7 +12,7 @@ import com.krisna.gitbuddy.data.repository.dao.FavoriteUserDao
     version = 1
 )
 abstract class FavUserDatabase : RoomDatabase() {
-    abstract fun userDao(): FavoriteUserDao
+    abstract fun favUserDao(): FavoriteUserDao
 
     companion object {
         private var INSTANCE: FavUserDatabase? = null

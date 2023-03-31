@@ -5,12 +5,12 @@ import com.krisna.gitbuddy.data.entity.FavoriteUser
 
 @Dao
 interface FavoriteUserDao {
-    @Query("SELECT * FROM User")
-    fun getAllUser(): List<FavoriteUser>
+    @Query("SELECT * FROM FavoriteUser")
+    suspend fun getAllUser(): List<FavoriteUser>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(favoriteUser: FavoriteUser)
+    suspend fun insertUser(favoriteUser: FavoriteUser)
 
     @Delete
-    fun deleteUser(favoriteUser: FavoriteUser)
+    suspend fun deleteUser(favoriteUser: FavoriteUser)
 }
