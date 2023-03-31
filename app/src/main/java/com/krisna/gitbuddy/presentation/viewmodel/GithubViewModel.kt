@@ -15,7 +15,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class GithubViewModel : ViewModel() {
+class GithubViewModel(
+    private val repository: GithubRepository
+) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
@@ -46,7 +48,7 @@ class GithubViewModel : ViewModel() {
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO) {
-                    GithubRepository().getUserList()
+                    repository.getUserList()
                 }
             }.onSuccess { userlist ->
                 withContext(Dispatchers.Main) {
@@ -67,7 +69,7 @@ class GithubViewModel : ViewModel() {
            runCatching {
                _isLoading.value = true
                withContext(Dispatchers.IO) {
-                   GithubRepository().searchUser(username)
+                   repository.searchUser(username)
                }
            }.onSuccess { data ->
                withContext(Dispatchers.Main) {
@@ -88,7 +90,7 @@ class GithubViewModel : ViewModel() {
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO) {
-                    GithubRepository().getUserDetail(username)
+                    repository.getUserDetail(username)
                 }
             }.onSuccess { detailUser ->
                 withContext(Dispatchers.Main) {
@@ -109,7 +111,7 @@ class GithubViewModel : ViewModel() {
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO) {
-                    GithubRepository().getUserFollowers(username)
+                    repository.getUserFollowers(username)
                 }
             }.onSuccess { userFollowers ->
                 withContext(Dispatchers.Main) {
@@ -131,7 +133,7 @@ class GithubViewModel : ViewModel() {
             runCatching {
                 _isLoading.value = true
                 withContext(Dispatchers.IO) {
-                    GithubRepository().getUserFollowing(username)
+                    repository.getUserFollowing(username)
                 }
             }.onSuccess { userFollowing ->
                 withContext(Dispatchers.Main) {
