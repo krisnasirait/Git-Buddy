@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.krisna.gitbuddy.R
+import com.krisna.gitbuddy.data.entity.FavoriteUser
 import com.krisna.gitbuddy.data.repository.adapter.SectionsPagerAdapter
 import com.krisna.gitbuddy.databinding.ActivityDetailBinding
 import com.krisna.gitbuddy.di.ViewModelFactory
@@ -73,7 +74,19 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(binding.root)
                 .load(data?.avatarUrl)
                 .into(binding.cvProfile)
+
+            val favoriteUser = FavoriteUser(
+                data?.id ?: 0,
+                data?.login ?: "",
+                data?.avatarUrl ?: "",
+            )
+
+            binding.fabFavorite.setOnClickListener {
+                githubViewModel.insertFavoriteUser(favoriteUser)
+            }
         }
+
+
     }
 
     private fun updateTabTitles() {
