@@ -3,4 +3,6 @@
     <attr name="gitBuddyTextColorPrimary" format="color" />
     <attr name="gitBuddyTextColorSecondary" format="color" />
     <attr name="gitBuddyTextColorPrimaryVariant" format="color" />
+    <attr name="gitBuddyFloatingPrimary" format="color" />
+    <attr name="gitBuddyFloatingSecondary" format="color" />
 </resources>

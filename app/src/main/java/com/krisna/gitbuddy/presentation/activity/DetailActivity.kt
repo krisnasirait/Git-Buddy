@@ -3,19 +3,27 @@ package com.krisna.gitbuddy.presentation.activity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import com.krisna.gitbuddy.R
+import com.krisna.gitbuddy.data.entity.FavoriteUser
 import com.krisna.gitbuddy.data.repository.adapter.SectionsPagerAdapter
 import com.krisna.gitbuddy.databinding.ActivityDetailBinding
+import com.krisna.gitbuddy.di.ViewModelFactory
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var viewModel: GithubViewModel
+    private val githubViewModel: GithubViewModel by viewModels(
+        factoryProducer = {
+            ViewModelFactory.getInstance(this)
+        }
+    )
     private var followersCount: Int = 0
     private var followingCount: Int = 0
 
@@ -31,21 +39,20 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
-        supportActionBar?.apply {
-            elevation = 0f
-            title = "Detail User"
-            setDisplayHomeAsUpEnabled(true)
-        }
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+
+
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[GithubViewModel::class.java]
         val username = intent.getStringExtra("username")
         username?.let {
-            viewModel.getUserDetail(it)
-            viewModel.setClickedUsername(username)
-            viewModel.getUserFollowers(username)
-            viewModel.getUserFollowing(username)
+            githubViewModel.getUserDetail(it)
+            githubViewModel.setClickedUsername(username)
+            githubViewModel.getUserFollowers(username)
+            githubViewModel.getUserFollowing(username)
         }
     }
 
@@ -54,11 +61,11 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        viewModel.isLoading.observe(this) { isLoading ->
+        githubViewModel.isLoading.observe(this) { isLoading ->
             binding.lvLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        viewModel.detailUser.observe(this) { data ->
+        githubViewModel.detailUser.observe(this) { data ->
             binding.tvName.text = data?.name
             binding.tvBio.text = data?.bio
             binding.tvUsername.text = data?.login
@@ -68,7 +75,23 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(binding.root)
                 .load(data?.avatarUrl)
                 .into(binding.cvProfile)
+
+            val favoriteUser = FavoriteUser(
+                data?.id ?: 0,
+                data?.login ?: "",
+                data?.avatarUrl ?: "",
+            )
+
+            binding.fabFavorite.setOnClickListener {
+                githubViewModel.insertFavoriteUser(favoriteUser)
+
+                githubViewModel.successMessage.observe(this) { message ->
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+
+
     }
 
     private fun updateTabTitles() {

@@ -24,7 +24,7 @@ class UserAdapter(
                     .load(item.avatarUrl)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(cvProfile)
-                root.setOnClickListener{
+                root.setOnClickListener {
                     itemClickListener.onItemUserListClicked(item.login)
                 }
             }
@@ -47,6 +47,8 @@ class UserAdapter(
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         itemList[position].let { holder.bind(it) }
+
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
