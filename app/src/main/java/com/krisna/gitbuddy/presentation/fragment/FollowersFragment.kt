@@ -2,15 +2,13 @@ package com.krisna.gitbuddy.presentation.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.krisna.gitbuddy.adapter.FollowersAdapter
+import com.krisna.gitbuddy.data.repository.adapter.FollowersAdapter
 import com.krisna.gitbuddy.databinding.FragmentFollowersBinding
-import com.krisna.gitbuddy.presentation.DetailActivity
+import com.krisna.gitbuddy.presentation.activity.DetailActivity
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
 class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
@@ -19,7 +17,11 @@ class FollowersFragment : Fragment(), FollowersAdapter.OnItemClickListener {
     private val viewModel: GithubViewModel by activityViewModels()
     private val adapter = FollowersAdapter(this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentFollowersBinding.inflate(inflater, container, false)
         setupRecyclerView()
         observeViewModel()

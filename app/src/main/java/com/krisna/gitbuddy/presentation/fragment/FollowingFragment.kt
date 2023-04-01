@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.krisna.gitbuddy.adapter.FollowingAdapter
+import com.krisna.gitbuddy.data.repository.adapter.FollowingAdapter
 import com.krisna.gitbuddy.databinding.FragmentFollowingBinding
-import com.krisna.gitbuddy.presentation.DetailActivity
+import com.krisna.gitbuddy.presentation.activity.DetailActivity
 import com.krisna.gitbuddy.presentation.viewmodel.GithubViewModel
 
 class FollowingFragment : Fragment(), FollowingAdapter.OnItemClickListener {

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
 
-    <color name="gitbuddy_50">#e8eaf6</color>
-    <color name="gitbuddy_100">#c5cae9</color>
-    <color name="gitbuddy_200">#9fa8da</color>
-    <color name="gitbuddy_300">#7986cb</color>
-    <color name="gitbuddy_400">#5c6bc0</color>
-    <color name="gitbuddy_500">#3f51b5</color>
-    <color name="gitbuddy_600">#3949ab</color>
-    <color name="gitbuddy_700">#303f9f</color>
-    <color name="gitbuddy_800">#283593</color>
-    <color name="gitbuddy_900">#1a237e</color>
-    <color name="gitbuddy_A100">#8c9eff</color>
-    <color name="gitbuddy_A200">#536dfe</color>
-    <color name="gitbuddy_A400">#3d5afe</color>
-    <color name="gitbuddy_A700">#304ffe</color>
+    <!-- Git Buddy Light -->
+    <color name="git_buddy_primary">#283593</color>
+    <color name="git_buddy_primary_variant">#3F51B5</color>
+    <color name="git_buddy_secondary">#FFFFFF</color>
+    <color name="git_buddy_background">#FFFFFF</color>
+    <color name="git_buddy_surface">#F5F5F5</color>
+    <color name="git_buddy_error">#B00020</color>
+    <color name="git_buddy_on_error">#FFFFFF</color>
 
-    <color name="transparent">#00000000</color>
-    <color name="grey">#D3D3D3</color>
+    <!-- Git Buddy Dark -->
+    <color name="git_buddy_dark_primary">#1E1E1E</color>
+    <color name="git_buddy_dark_primary_variant">#424242</color>
+    <color name="git_buddy_dark_secondary">#BDBDBD</color>
+    <color name="git_buddy_dark_background">#121212</color>
+    <color name="git_buddy_dark_surface">#1E1E1E</color>
+    <color name="git_buddy_dark_error">#CF6679</color>
+    <color name="git_buddy_dark_on_primary">#FFFFFF</color>
+    <color name="git_buddy_dark_on_secondary">#FFFFFF</color>
+    <color name="git_buddy_dark_on_background">#FFFFFF</color>
+    <color name="git_buddy_dark_on_surface">#FFFFFF</color>
 </resources>

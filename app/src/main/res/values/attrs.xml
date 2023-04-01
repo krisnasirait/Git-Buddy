@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="gitBuddyTextColorPrimary" format="color" />
+    <attr name="gitBuddyTextColorSecondary" format="color" />
+    <attr name="gitBuddyTextColorPrimaryVariant" format="color" />
+    <attr name="gitBuddyFloatingPrimary" format="color" />
+    <attr name="gitBuddyFloatingSecondary" format="color" />
+</resources>

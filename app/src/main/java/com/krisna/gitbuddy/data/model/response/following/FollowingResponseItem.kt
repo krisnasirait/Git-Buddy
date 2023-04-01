@@ -1,12 +1,9 @@
-package com.krisna.gitbuddy.data.model.response.alluser
+package com.krisna.gitbuddy.data.model.response.following
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class AllUserResponseItem(
+data class FollowingResponseItem(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("events_url")
@@ -42,6 +39,5 @@ data class AllUserResponseItem(
     @SerializedName("type")
     val type: String,
     @SerializedName("url")
-    val url: String,
-    var isFavorite: Boolean
-): Parcelable
+    val url: String
+)

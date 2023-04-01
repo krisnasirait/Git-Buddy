@@ -4,7 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.DetailActivity">
+    tools:context=".presentation.activity.DetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:titleTextColor="?attr/gitBuddyTextColorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_favorite_border_24"
+        app:backgroundTint="?attr/gitBuddyFloatingPrimary"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/llDetail"
@@ -12,16 +34,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/gitbuddy_500">
+        android:theme="@style/Theme.GitBuddy"
+        android:background="?android:colorPrimary">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/cvProfile"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@color/gitbuddy_800"
             android:layout_marginTop="10dp"/>
 
         <TextView
@@ -29,16 +51,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_semibold"/>
+            android:textAppearance="@style/Theme.GitBuddy"
+            android:textColor="?attr/gitBuddyTextColorSecondary"
+            android:fontFamily="@font/roboto_bold"/>
 
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_regular"/>
+            android:textAppearance="@style/Theme.GitBuddy"
+            android:textColor="?attr/gitBuddyTextColorSecondary"
+            android:fontFamily="@font/roboto_regular"/>
 
         <TextView
             android:id="@+id/tvBio"
@@ -48,8 +72,9 @@
             android:layout_marginEnd="15dp"
             android:textSize="18sp"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_medium"/>
+            android:textAppearance="@style/Theme.GitBuddy"
+            android:textColor="?attr/gitBuddyTextColorSecondary"
+            android:fontFamily="@font/roboto_medium"/>
 
     </LinearLayout>
 
@@ -59,7 +84,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/llDetail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tabSelectedTextAppearance="@style/Theme.GitBuddy"
+        app:tabSelectedTextColor="?attr/gitBuddyTextColorPrimary"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"
