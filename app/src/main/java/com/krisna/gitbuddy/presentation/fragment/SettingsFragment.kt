@@ -64,6 +64,15 @@ class SettingsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val preferences = activity?.getSharedPreferences(THEME_PREFERENCE, Context.MODE_PRIVATE)
+        val currentMode = preferences?.getInt(THEME_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            binding.lvLightDarkMode.progress = 1f
+        }
+    }
+
     private fun updateDescriptionText() {
         val preferences = activity?.getSharedPreferences(THEME_PREFERENCE, Context.MODE_PRIVATE)
         val currentMode = preferences?.getInt(THEME_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
