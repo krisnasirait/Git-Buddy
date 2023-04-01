@@ -30,6 +30,10 @@
         <item name="gitBuddyTextColorPrimaryVariant">@color/git_buddy_primary_variant</item>
         <item name="gitBuddyTextColorSecondary">@color/git_buddy_secondary</item>
 
+        <!-- Floating color -->
+        <item name="gitBuddyFloatingPrimary">@color/git_buddy_primary</item>
+        <item name="gitBuddyFloatingSecondary">@color/git_buddy_primary_variant</item>
+
     </style>
 
     <style name="Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
@@ -45,6 +49,5 @@
 
 
     <style name="Theme.GitBuddy.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.GitBuddy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

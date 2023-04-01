@@ -43,5 +43,5 @@ data class AllUserResponseItem(
     val type: String,
     @SerializedName("url")
     val url: String,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean
 ): Parcelable

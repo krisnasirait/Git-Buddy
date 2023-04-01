@@ -30,5 +30,10 @@
         <item name="gitBuddyTextColorPrimaryVariant">@color/git_buddy_secondary</item>
         <item name="gitBuddyTextColorSecondary">@color/git_buddy_dark_on_background</item>
 
+        <!-- Floating color -->
+        <!-- Floating color -->
+        <item name="gitBuddyFloatingPrimary">@color/git_buddy_dark_surface</item>
+        <item name="gitBuddyFloatingSecondary">@color/git_buddy_dark_on_surface</item>
+
     </style>
 </resources>
