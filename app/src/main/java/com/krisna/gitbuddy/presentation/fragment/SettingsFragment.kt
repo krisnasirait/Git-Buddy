@@ -1,6 +1,7 @@
 package com.krisna.gitbuddy.presentation.fragment
 
 import android.animation.Animator
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +16,11 @@ class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
 
+    companion object {
+        const val THEME_PREFERENCE = "theme_preference"
+        const val THEME_MODE = "theme_mode"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,8 +30,7 @@ class SettingsFragment : Fragment() {
         updateDescriptionText()
 
         binding.lvLightDarkMode.setOnClickListener {
-            val isDarkMode =
-                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
             val minFrame = 60
             val maxFrame = 134
             val speed = if (isDarkMode) -1f else 1f
@@ -39,9 +44,15 @@ class SettingsFragment : Fragment() {
                 override fun onAnimationStart(p0: Animator) {}
 
                 override fun onAnimationEnd(p0: Animator) {
-                    val nightMode =
-                        if (isDarkMode) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
-                    AppCompatDelegate.setDefaultNightMode(nightMode)
+                    val currentMode = if (isDarkMode) {
+                        AppCompatDelegate.MODE_NIGHT_NO
+                    } else {
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    }
+                    AppCompatDelegate.setDefaultNightMode(currentMode)
+                    val preferences = activity?.getSharedPreferences(THEME_PREFERENCE, Context.MODE_PRIVATE)
+                    preferences?.edit()?.putInt(THEME_MODE, currentMode)?.apply()
+
                     updateDescriptionText()
                 }
 
@@ -54,12 +65,13 @@ class SettingsFragment : Fragment() {
     }
 
     private fun updateDescriptionText() {
-        val textRes =
-            if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                R.string.dark_mode
-            } else {
-                R.string.light_mode
-            }
+        val preferences = activity?.getSharedPreferences(THEME_PREFERENCE, Context.MODE_PRIVATE)
+        val currentMode = preferences?.getInt(THEME_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val textRes = if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            R.string.dark_mode
+        } else {
+            R.string.light_mode
+        }
         binding.tvDescription.text = getString(textRes)
     }
 }
