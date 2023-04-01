@@ -39,7 +39,7 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnItemClickListener {
     }
 
     private fun setupRecyclerView() {
-        favoriteAdapter = FavoriteAdapter(this)
+        favoriteAdapter = FavoriteAdapter(this, githubViewModel)
         binding.rvFavorite.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = favoriteAdapter

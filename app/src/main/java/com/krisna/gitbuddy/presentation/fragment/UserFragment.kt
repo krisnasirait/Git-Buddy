@@ -44,7 +44,7 @@ class UserFragment : Fragment(), UserAdapter.OnItemClickListener,
     }
 
     private fun setupRecyclerView() {
-        userAdapter = UserAdapter(this)
+        userAdapter = UserAdapter(this, githubViewModel)
         searchAdapter = SearchAdapter(this)
         binding.rvUser.apply {
             layoutManager = LinearLayoutManager(context)
